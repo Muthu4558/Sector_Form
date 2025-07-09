@@ -108,7 +108,7 @@ const HeroSection = () => {
                 className="absolute top-4 right-4 md:left-4 w-32 md:w-40 z-10"
             />
 
-            <div className="relative z-10 max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div className="relative z-10 max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center mt-5">
                 {/* Left text */}
                 <div className="text-white space-y-6 px-4">
                     <h1 className="text-4xl md:text-5xl font-bold leading-tight">
