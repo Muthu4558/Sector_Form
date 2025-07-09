@@ -97,8 +97,8 @@ const InHouseHealthcare = () => {
                         <SwiperSlide
                             key={index}
                             className="flex h-auto"
-                            data-aos="zoom-in"
-                            data-aos-delay={index * 100}
+                            // data-aos="zoom-in"
+                            // data-aos-delay={index * 100}
                         >
                             <div className="flex flex-col justify-between bg-white rounded-xl shadow-md p-4 text-center hover:shadow-2xl transition-all duration-300 w-full min-h-[110px] mb-5">
                                 <div className="mb-3 flex justify-center">{item.icon}</div>

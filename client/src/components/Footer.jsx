@@ -32,7 +32,7 @@ const ContactSection = () => {
           <p className="text-base md:text-lg font-medium">
             <span className="text-gray-500">Email:</span>{' '}
             <a href="mailto:wellness@nizcare.co" className="text-blue-600 hover:underline">
-              wellness@nizcare.co
+              <p>wellness@nizcare.co</p>
             </a>
           </p>
         </div>
@@ -44,7 +44,7 @@ const ContactSection = () => {
           <p className="text-base md:text-lg font-medium">
             <span className="text-gray-500">Phone:</span>{' '}
             <a href="tel:+918148879313" className="text-green-600 hover:underline">
-              +91-8148879313
+              <p>+91 8148879313</p>
             </a>
           </p>
         </div>
@@ -56,7 +56,7 @@ const ContactSection = () => {
           <p className="text-base md:text-lg font-medium">
             <span className="text-gray-500">Visit:</span>{' '}
             <a href="https://www.nizcare.com" className="text-cyan-600 hover:underline">
-              www.nizcare.com
+              <p>www.nizcare.com</p>
             </a>
           </p>
         </div>
