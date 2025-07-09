@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaUserTie, FaUsersCog, FaUserNurse } from 'react-icons/fa';
-import { MdHealthAndSafety, MdWork, MdOutlineLocalHospital, MdAccessTime } from 'react-icons/md';
+import { MdHealthAndSafety, MdOutlineLocalHospital, MdAccessTime } from 'react-icons/md';
 import { BiBrain, BiBody, BiDrink, BiCollapse, BiExpand } from 'react-icons/bi';
 import { GiStandingPotion, GiChemicalDrop, GiVirus } from 'react-icons/gi';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 import Management from '../assets/Hotel-sector/owners.jpeg';
 import Admin from '../assets/Hotel-sector/reception.jpeg';
@@ -88,9 +90,7 @@ const AccordionItem = ({ title, icon, description, index, openIndex, setOpenInde
         className="w-full flex justify-between items-center bg-teal-600 hover:bg-teal-700 text-white px-4 py-3 rounded-md text-left font-semibold transition-all"
       >
         <span className="flex items-center gap-2">
-          <span className='text-2xl text-amber-500'> 
-            {icon}
-          </span> {title}
+          <span className='text-2xl text-amber-500'>{icon}</span> {title}
         </span>
         <span>{isOpen ? <BiCollapse /> : <BiExpand />}</span>
       </button>
@@ -116,9 +116,16 @@ const AccordionItem = ({ title, icon, description, index, openIndex, setOpenInde
 };
 
 const HotelHealthChallenges = () => {
+  useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+  }, []);
+
   return (
     <section className="py-12 px-4 bg-gray-50">
-      <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
+      <h2
+        className="text-2xl md:text-3xl font-bold text-center mb-10"
+        data-aos="fade-up"
+      >
         The Unseen Health Challenges in the Hotel Industry
       </h2>
 
@@ -127,7 +134,12 @@ const HotelHealthChallenges = () => {
           const [openIndex, setOpenIndex] = useState(null);
 
           return (
-            <div key={groupIdx} className="bg-white rounded-2xl shadow p-4">
+            <div
+              key={groupIdx}
+              className="bg-white rounded-2xl shadow p-4"
+              data-aos="zoom-in-up"
+              data-aos-delay={groupIdx * 100}
+            >
               <img
                 src={group.image}
                 alt={group.title}

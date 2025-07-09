@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -6,6 +6,9 @@ import 'swiper/css';
 import { FiBarChart2 } from 'react-icons/fi';
 import { FaUserNurse, FaHeartbeat, FaFirstAid } from 'react-icons/fa';
 import { MdAssignmentInd } from 'react-icons/md';
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const features = [
     {
@@ -55,17 +58,25 @@ const features = [
 ];
 
 const InHouseHealthcare = () => {
+    useEffect(() => {
+        AOS.init({ duration: 800, once: true });
+    }, []);
+
     return (
         <section className="py-16 px-4 bg-gray-50">
             <div className="max-w-7xl mx-auto">
                 {/* Banner */}
-                <div className="bg-teal-600 text-white rounded-2xl px-6 py-10 text-center shadow-lg mb-12">
+                <div
+                    className="bg-teal-600 text-white rounded-2xl px-6 py-10 text-center shadow-lg mb-12"
+                    data-aos="fade-up"
+                >
                     <h2 className="text-3xl md:text-4xl font-bold mb-2">
                         Bring Healthcare In-House with{' '}
                         <span className="text-yellow-400">Nizcare’s OHC</span>
                     </h2>
                     <p className="text-lg text-white/90 max-w-4xl mx-auto">
-                        Empower your workplace with on-site medical care, wellness insights, and proactive health solutions—all tailored for your team.
+                        Empower your workplace with on-site medical care, wellness insights,
+                        and proactive health solutions—all tailored for your team.
                     </p>
                 </div>
 
@@ -83,7 +94,12 @@ const InHouseHealthcare = () => {
                     }}
                 >
                     {features.map((item, index) => (
-                        <SwiperSlide key={index} className="flex h-auto">
+                        <SwiperSlide
+                            key={index}
+                            className="flex h-auto"
+                            data-aos="zoom-in"
+                            data-aos-delay={index * 100}
+                        >
                             <div className="flex flex-col justify-between bg-white rounded-xl shadow-md p-4 text-center hover:shadow-2xl transition-all duration-300 w-full min-h-[110px] mb-5">
                                 <div className="mb-3 flex justify-center">{item.icon}</div>
                                 <p className="font-medium text-slate-800 text-sm leading-snug">
@@ -92,7 +108,6 @@ const InHouseHealthcare = () => {
                             </div>
                         </SwiperSlide>
                     ))}
-
                 </Swiper>
             </div>
         </section>

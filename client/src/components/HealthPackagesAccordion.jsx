@@ -1,20 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  FaUserTie,
-  FaUsersCog,
-  FaUserNurse,
+  FaUserTie, FaUsersCog, FaUserNurse,
 } from 'react-icons/fa';
 import {
-  GiPlantRoots,
-  GiHealthCapsule,
-  GiCrown,
-  GiStrong,
-  GiBurningBook,
-  GiCook,
-  GiHealthNormal,
+  GiPlantRoots, GiHealthCapsule, GiCrown, GiStrong,
+  GiBurningBook, GiCook, GiHealthNormal,
 } from 'react-icons/gi';
 import { BiCollapse, BiExpand } from 'react-icons/bi';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const data = [
   {
@@ -25,8 +20,7 @@ const data = [
         title: 'Management Executives',
         icon: <GiPlantRoots className="text-xl text-amber-400" />,
         descriptionTittle: 'Smart Start Package',
-        description:
-          'Urine Routine, Blood Pressure, BMI, General Physical Exam',
+        description: 'Urine Routine, Blood Pressure, BMI, General Physical Exam',
       },
       {
         title: 'Senior managers, department heads',
@@ -49,8 +43,7 @@ const data = [
       {
         title: 'Basic Wellness',
         icon: <GiHealthNormal className="text-xl text-amber-400" />,
-        description:
-          'CBC, Urine Routine, General Physical Exam, Blood Pressure, Vision Check',
+        description: 'CBC, Urine Routine, General Physical Exam, Blood Pressure, Vision Check',
       },
       {
         title: 'Stress Shield',
@@ -72,8 +65,7 @@ const data = [
         title: 'Entry-level and new joiners',
         icon: <GiHealthNormal className="text-xl text-amber-400" />,
         descriptionTittle: 'Essential Safety Package',
-        description:
-          'Core Parameters: CBC (blood test), Urine Routine, Physical Examination, Temperature Check, Fitness Certificate',
+        description: 'Core Parameters: CBC (blood test), Urine Routine, Physical Examination, Temperature Check, Fitness Certificate',
       },
       {
         title: 'Food handlers, kitchen staff',
@@ -91,7 +83,6 @@ const data = [
   },
 ];
 
-// Accordion item component
 const AccordionItem = ({ item, idx, openIndex, setOpenIndex }) => {
   const isOpen = idx === openIndex;
 
@@ -119,7 +110,7 @@ const AccordionItem = ({ item, idx, openIndex, setOpenIndex }) => {
             className="overflow-hidden"
           >
             <div className="bg-teal-50 px-4 mt-4 text-[15px] font-semibold rounded-t-md shadow text-green-800">
-                {item.descriptionTittle}
+              {item.descriptionTittle}
             </div>
             <div className="bg-gray-50 px-4 py-3 font-semibold text-gray-800 text-sm whitespace-pre-line rounded-b-md shadow">
               {item.description}
@@ -131,20 +122,30 @@ const AccordionItem = ({ item, idx, openIndex, setOpenIndex }) => {
   );
 };
 
-// Main component
 const HealthPackagesAccordion = () => {
-  // Set first item of each group open by default
   const [openIndexes, setOpenIndexes] = useState(data.map(() => 0));
+
+  useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+  }, []);
 
   return (
     <section className="py-12 px-4 bg-gray-50">
-      <h2 className="text-3xl font-bold text-center mb-10">
+      <h2
+        className="text-3xl font-bold text-center mb-10"
+        data-aos="fade-up"
+      >
         Health Check-up Packages for Hotel Teams
       </h2>
 
       <div className="grid md:grid-cols-3 gap-6 max-w-7xl mx-auto">
         {data.map((group, groupIdx) => (
-          <div key={groupIdx} className="bg-white rounded-2xl shadow-lg p-6">
+          <div
+            key={groupIdx}
+            className="bg-white rounded-2xl shadow-lg p-6"
+            data-aos="zoom-in-up"
+            data-aos-delay={groupIdx * 100}
+          >
             <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
               {group.icon}
               {group.title}

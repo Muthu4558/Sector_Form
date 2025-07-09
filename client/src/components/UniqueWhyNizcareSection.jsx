@@ -1,4 +1,19 @@
-import { FaHeartbeat, FaSmile, FaStar, FaShieldAlt, FaCubes, FaMapMarkedAlt, FaCogs, FaCheckCircle, FaChartLine, FaWallet } from 'react-icons/fa';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+import {
+  FaHeartbeat,
+  FaSmile,
+  FaStar,
+  FaShieldAlt,
+  FaCubes,
+  FaMapMarkedAlt,
+  FaCogs,
+  FaCheckCircle,
+  FaChartLine,
+  FaWallet,
+} from 'react-icons/fa';
 
 const whatWillYouGain = [
   {
@@ -36,8 +51,12 @@ const whyNizcare = [
   { icon: FaWallet, title: 'Affordable Per-Employee Plans' },
 ];
 
-const FancyCard = ({ icon: Icon, title, description }) => (
-  <div className="group rounded-xl p-6 bg-white hover:bg-teal-50 shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-teal-400 cursor-pointer">
+const FancyCard = ({ icon: Icon, title, description, aos, delay }) => (
+  <div
+    className="group rounded-xl p-6 bg-white hover:bg-teal-50 shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-teal-400 cursor-pointer"
+    data-aos={aos}
+    data-aos-delay={delay}
+  >
     <div className="flex items-center justify-center w-14 h-14 rounded-full bg-teal-100 group-hover:bg-teal-500 mb-4 mx-auto transition-colors">
       <Icon className="text-teal-600 group-hover:text-white text-xl" />
     </div>
@@ -51,10 +70,13 @@ const FancyCard = ({ icon: Icon, title, description }) => (
 );
 
 const UniqueWhyNizcareSection = () => {
+  useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+  }, []);
+
   return (
     <section className="py-20 px-4 bg-gradient-to-b from-white to-slate-50">
       <div className="max-w-7xl mx-auto space-y-20">
-
         {/* What Will You Gain */}
         <div>
           <h2 className="text-3xl md:text-4xl font-extrabold text-center text-slate-900 mb-10">
@@ -62,7 +84,12 @@ const UniqueWhyNizcareSection = () => {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-8">
             {whatWillYouGain.map((item, idx) => (
-              <FancyCard key={idx} {...item} />
+              <FancyCard
+                key={idx}
+                {...item}
+                aos="fade-up"
+                delay={idx * 100}
+              />
             ))}
           </div>
         </div>
@@ -74,11 +101,15 @@ const UniqueWhyNizcareSection = () => {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-8">
             {whyNizcare.map((item, idx) => (
-              <FancyCard key={idx} {...item} />
+              <FancyCard
+                key={idx}
+                {...item}
+                aos="fade-up"
+                delay={idx * 100}
+              />
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );

@@ -3,11 +3,12 @@ import heroImage from '../assets/Hotel-sector/coverimg.jpeg';
 import logo from '../assets/Hotel-sector/logo_white.png';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import india from '../assets/indiaData.json'; // ✅ Your saved JSON
+import india from '../assets/indiaData.json';
 
 const HeroSection = () => {
     const [loading, setLoading] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [mobileError, setMobileError] = useState('');
     const [formData, setFormData] = useState({
         companyName: '',
         hrName: '',
@@ -24,16 +25,8 @@ const HeroSection = () => {
         anythingElse: ''
     });
 
-    const sectorOptions = [
-        'Cement', 'Fertilizer', 'Food processing', 'Steel', 'Pharma', 'Hotels', 'IT', 'Banks',
-        'Airlines', 'Leather Industry', 'Heavy industry', 'Cottage', 'Chemical', 'Mining',
-        'Textile', 'Automobile', 'ITES', 'Aerospace & Defense', 'Metals', 'Petroleum Industry',
-        'Telecommunication', 'Ports, Shipping & Maritime', 'Water Treatment & Sanitation Services',
-        'Dairy & Livestock Industry', 'Tourism & Travel', 'Paper', 'Real Estate Tech', 'Sports Industry'
-    ];
-
     useEffect(() => {
-        AOS.init({ duration: 1000 });
+        AOS.init({ duration: 800, once: true });
     }, []);
 
     const handleChange = (field, value) => {
@@ -41,7 +34,7 @@ const HeroSection = () => {
             setFormData(prev => ({
                 ...prev,
                 state: value,
-                district: '' // reset district if state changes
+                district: ''
             }));
             return;
         }
@@ -52,6 +45,7 @@ const HeroSection = () => {
 
         if (field === 'mobile') {
             value = value.replace(/[^\d]/g, '').slice(0, 10);
+            setMobileError(value.length !== 10 ? 'Mobile number must be 10 digits' : '');
         }
 
         if (field === 'employeeCount') {
@@ -63,6 +57,11 @@ const HeroSection = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (formData.mobile.length !== 10) {
+            setMobileError('Mobile number must be 10 digits');
+            return;
+        }
+
         setLoading(true);
         try {
             const res = await fetch(`${import.meta.env.VITE_APP_BASE_URL}/api/company/submit`, {
@@ -74,7 +73,6 @@ const HeroSection = () => {
             if (res.ok) {
                 setIsSubmitted(true);
             } else {
-                alert('Submission failed');
                 console.error(data);
             }
         } catch (error) {
@@ -106,15 +104,20 @@ const HeroSection = () => {
                 src={logo}
                 alt="Logo"
                 className="absolute top-4 right-4 md:left-4 w-32 md:w-40 z-10"
+                data-aos="fade-down"
             />
 
+            {/* Content */}
             <div className="relative z-10 max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center mt-5">
-                {/* Left text */}
+                {/* Left Text */}
                 <div className="text-white space-y-6 px-4">
-                    <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+                    <h1
+                        className="text-4xl md:text-5xl font-bold leading-tight"
+                        data-aos="fade-right"
+                    >
                         Wellness Check-In for Hotel Champions
                     </h1>
-                    <p className="text-lg max-w-md">
+                    <p className="text-lg max-w-md" data-aos="fade-up">
                         Let’s bring proactive healthcare to your hospitality team.
                     </p>
                 </div>
@@ -125,7 +128,7 @@ const HeroSection = () => {
                     className="bg-white/10 backdrop-blur-md p-8 rounded-3xl shadow-lg border border-white/30 space-y-6"
                     data-aos="fade-left"
                 >
-                    <h2 className="text-2xl text-white font-bold text-center mb-2">
+                    <h2 className="text-2xl text-white font-bold text-center mb-2" data-aos="zoom-in">
                         Schedule a Demo
                     </h2>
 
@@ -137,6 +140,7 @@ const HeroSection = () => {
                             value={formData.companyName}
                             onChange={(e) => handleChange("companyName", e.target.value)}
                             required
+                            data-aos="fade-up"
                         />
                         <input
                             type="text"
@@ -145,13 +149,17 @@ const HeroSection = () => {
                             value={formData.employeeCount}
                             onChange={(e) => handleChange("employeeCount", e.target.value)}
                             required
+                            data-aos="fade-up"
+                            data-aos-delay="100"
                         />
-                        {/* State Dropdown */}
+
                         <select
                             className="input-style bg-white/90"
                             value={formData.state}
                             onChange={(e) => handleChange('state', e.target.value)}
                             required
+                            data-aos="fade-up"
+                            data-aos-delay="200"
                         >
                             <option value="">Select State *</option>
                             {Object.keys(india).map((state) => (
@@ -161,13 +169,14 @@ const HeroSection = () => {
                             ))}
                         </select>
 
-                        {/* District Dropdown */}
                         <select
                             className="input-style bg-white/90"
                             value={formData.district}
                             onChange={(e) => handleChange('district', e.target.value)}
                             required
                             disabled={!formData.state}
+                            data-aos="fade-up"
+                            data-aos-delay="300"
                         >
                             <option value="">Select District *</option>
                             {formData.state &&
@@ -177,6 +186,7 @@ const HeroSection = () => {
                                     </option>
                                 ))}
                         </select>
+
                         <input
                             type="text"
                             placeholder="City *"
@@ -184,6 +194,8 @@ const HeroSection = () => {
                             value={formData.city}
                             onChange={(e) => handleChange("city", e.target.value)}
                             required
+                            data-aos="fade-up"
+                            data-aos-delay="400"
                         />
                         <input
                             type="text"
@@ -192,57 +204,52 @@ const HeroSection = () => {
                             value={formData.hrSpocName}
                             onChange={(e) => handleChange("hrSpocName", e.target.value)}
                             required
+                            data-aos="fade-up"
+                            data-aos-delay="500"
                         />
 
-                        <input
-                            type="text"
-                            placeholder="Mobile Number *"
-                            className="input-style bg-white/90"
-                            value={formData.mobile}
-                            onChange={(e) => handleChange("mobile", e.target.value)}
-                            required
-                        />
+                        {/* Mobile input */}
+                        <div
+                            className="flex items-center bg-white/90 rounded-md overflow-hidden col-span-1 md:col-span-2"
+                            data-aos="fade-up"
+                            data-aos-delay="600"
+                        >
+                            <span className="px-3 text-gray-700 font-semibold border-r border-gray-300">
+                                +91
+                            </span>
+                            <input
+                                type="text"
+                                placeholder="Mobile Number *"
+                                className="w-full px-3 py-2 focus:outline-none"
+                                value={formData.mobile}
+                                onChange={(e) => handleChange("mobile", e.target.value)}
+                                required
+                            />
+                        </div>
+                        {mobileError && (
+                            <p className="text-red-500 text-sm mt-1 ml-1 col-span-2">
+                                {mobileError}
+                            </p>
+                        )}
+
                         <input
                             type="email"
                             placeholder="Email *"
-                            className="input-style bg-white/90"
+                            className="input-style bg-white/90 col-span-1 md:col-span-2"
                             value={formData.email}
                             onChange={(e) => handleChange("email", e.target.value)}
                             required
+                            data-aos="fade-up"
+                            data-aos-delay="700"
                         />
                     </div>
-
-                    {/* <select
-                        className="input-style bg-white/90"
-                        value={formData.usingWellness}
-                        onChange={(e) => handleChange("usingWellness", e.target.value)}
-                        required
-                    >
-                        <option value="">Currently using any wellness service? *</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                    </select> */}
-
-                    {/* <textarea
-                        rows={3}
-                        placeholder="Expected Features *"
-                        className="input-style bg-white/90"
-                        value={formData.expectedFeatures}
-                        onChange={(e) => handleChange("expectedFeatures", e.target.value)}
-                        required
-                    />
-                    <textarea
-                        rows={3}
-                        placeholder="Anything else you would like to share"
-                        className="input-style bg-white/90"
-                        value={formData.anythingElse}
-                        onChange={(e) => handleChange("anythingElse", e.target.value)}
-                    /> */}
 
                     <button
                         type="submit"
                         disabled={loading}
                         className={`w-full py-3 rounded-xl bg-gradient-to-r from-orange-400 to-yellow-400 text-white font-bold shadow-md transition duration-300 hover:scale-105 ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
+                        data-aos="zoom-in"
+                        data-aos-delay="800"
                     >
                         {loading ? "Submitting..." : "Submit"}
                     </button>
