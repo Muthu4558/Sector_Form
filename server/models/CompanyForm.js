@@ -6,6 +6,8 @@ const companyFormSchema = new mongoose.Schema({
   hrSpocName: String,
   mobile: String,
   email: String,
+  state: String,  
+  district: String,
   city: String,
   sector: String,
   usingWellness: String,

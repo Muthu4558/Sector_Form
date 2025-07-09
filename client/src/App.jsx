@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Home from './pages/Home.jsx';
+import Hotel from './pages/HotelSector.jsx';
 import Admin from './pages/Admin.jsx';
 import Login from './pages/Login.jsx';
 import PrivateRoute from './components/PrivateRoute.jsx';
@@ -13,6 +14,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/sector-hotel" element={<Hotel />} />
           <Route path="/login" element={<Login />} />
           <Route
             path="/admin"

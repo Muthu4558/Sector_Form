@@ -59,7 +59,7 @@ const Admin = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('token');
     toast.success("Logged out");
     navigate('/');
   };
@@ -74,6 +74,8 @@ const Admin = () => {
       entry.hrSpocName,
       entry.mobile,
       entry.email,
+      entry.state,
+      entry.district,
       entry.city,
       entry.sector,
       entry.usingWellness,
@@ -81,7 +83,7 @@ const Admin = () => {
     ]);
 
     doc.autoTable({
-      head: [["#", "Company", "HR Name", "HR SPOC", "Phone", "Email", "City", "Sector", "Using Wellness", "Employees"]],
+      head: [["#", "Company", "HR Name", "HR SPOC", "Phone", "Email", "State", "District", "City", "Sector", "Using Wellness", "Employees"]],
       body: tableData,
       startY: 20,
       styles: { fontSize: 8 }
@@ -97,6 +99,8 @@ const Admin = () => {
       "HR SPOC": entry.hrSpocName,
       "Phone": entry.mobile,
       "Email": entry.email,
+      "State": entry.state,
+      "District": entry.district,
       "City": entry.city,
       "Sector": entry.sector,
       "Using Wellness": entry.usingWellness,
@@ -129,32 +133,41 @@ const Admin = () => {
               <th className="px-4 py-3">#</th>
               <th className="px-4 py-3">Company Info</th>
               <th className="px-4 py-3">Contact</th>
-              <th className="px-4 py-3">Expecting Features</th>
+              {/* <th className="px-4 py-3">Expecting Features</th> */}
               <th className="px-4 py-3">Status</th>
               <th className="px-4 py-3">Remarks</th>
               <th className="px-4 py-3">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
+            {forms.length === 0 && (
+              <tr>
+                <td colSpan="6" className="px-4 py-6 text-center text-gray-500">
+                  No entries found
+                </td>
+              </tr>
+            )}
             {forms.map((entry, i) => (
               <tr key={i} className="hover:bg-teal-50 transition-all duration-300 group">
                 <td className="px-4 py-3 font-semibold text-gray-600">{i + 1}</td>
                 <td className="px-4 py-3 space-y-1">
                   <div className="font-semibold text-gray-800">Company Name: {entry.companyName}</div>
-                  <div className="font-semibold text-gray-600">Sector: {entry.sector}</div>
+                  {/* <div className="font-semibold text-gray-600">Sector: {entry.sector}</div> */}
                   <div className="font-semibold text-gray-600">Employees: {entry.employeeCount}</div>
                 </td>
                 <td className="px-4 py-3 space-y-1">
                   <div className="font-semibold text-gray-600">HR: {entry.hrSpocName}</div>
                   <div className="font-semibold text-gray-600">Email: {entry.email}</div>
                   <div className="font-semibold text-gray-600">Mobile: {entry.mobile}</div>
+                  <div className="font-semibold text-gray-600">State: {entry.state}</div>
+                  <div className="font-semibold text-gray-600">District: {entry.district}</div>
                   <div className="font-semibold text-gray-600">City: {entry.city}</div>
                 </td>
-                <td className='px-4 py-3 space-y-1'>
+                {/* <td className='px-4 py-3 space-y-1'>
                   <div className="font-semibold text-gray-600">Wellness: {entry.usingWellness ? "Yes" : "No"}</div>
                   <div className="font-semibold text-gray-600">Features: {entry.expectedFeatures || "N/A"}</div>
                   <div className="font-semibold text-gray-600">Anything Else: {entry.anythingElse || "N/A"}</div>
-                </td>
+                </td> */}
                 <td className="px-4 py-3 text-left">
                   <div className="space-y-2">
                     {["statusEmail", "statusWhatsapp", "statusPhone"].map((field, idx) => (
