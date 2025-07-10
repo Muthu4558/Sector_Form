@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import heroImage from '../assets/Hotel-sector/coverimg.jpeg';
-import logo from '../assets/Hotel-sector/logo_white.png';
+import { useEffect, useState } from 'react';
+import heroImage from '../../assets/Hotel-sector-img/coverimg.jpeg';
+import logo from '../../assets/Hotel-sector-img/logo_white.png';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import india from '../assets/indiaData.json';
+import india from '../../assets/indiaData.json';
 
 const HeroSection = () => {
     const [loading, setLoading] = useState(false);
@@ -18,7 +18,7 @@ const HeroSection = () => {
         state: '',
         district: '',
         city: '',
-        sector: '',
+        sector: 'IT',
         usingWellness: '',
         employeeCount: '',
         expectedFeatures: '',
@@ -107,7 +107,7 @@ const HeroSection = () => {
             <div className="relative z-10 max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center mt-5">
                 <div className="text-white space-y-6 px-4">
                     <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-                        Wellness Check-In for Hotel Champions
+                        Wellness Check-In for IT Companies
                     </h1>
                     <p className="text-lg max-w-md">
                         Let’s bring proactive healthcare to your hospitality team.
@@ -124,6 +124,7 @@ const HeroSection = () => {
                     </h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <p className='hidden md:hidden'>Hotel</p>
                         <input
                             type="text"
                             placeholder="Company Name *"

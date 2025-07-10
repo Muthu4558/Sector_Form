@@ -12,6 +12,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,6 +21,7 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const res = await axios.post(`${import.meta.env.VITE_APP_BASE_URL}/api/auth/login`, {
         email,
@@ -30,12 +32,43 @@ const Login = () => {
       setTimeout(() => navigate('/admin'), 1000);
     } catch (err) {
       toast.error(err.response?.data?.message || 'Login failed');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row items-center justify-center overflow-hidden bg-[#f0f4ff]">
+    <div className="min-h-screen flex flex-col md:flex-row items-center justify-center overflow-hidden bg-[#f0f4ff] relative">
       <Toaster position="top-center" />
+
+      {/* Full-screen Loading Spinner */}
+      {isLoading && (
+        <div className="absolute inset-0 z-50 bg-black bg-opacity-20 backdrop-blur-sm flex items-center justify-center">
+          <div className="flex flex-col items-center">
+            <svg
+              className="animate-spin h-10 w-10 text-teal-600 mb-3"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v8H4z"
+              ></path>
+            </svg>
+            <p className="text-teal-700 font-semibold">Logging in...</p>
+          </div>
+        </div>
+      )}
 
       {/* Left Side */}
       <div
@@ -86,7 +119,12 @@ const Login = () => {
 
             <button
               type="submit"
-              className="w-full bg-teal-600 text-white py-2 rounded-md font-semibold hover:bg-teal-500 transition"
+              disabled={isLoading}
+              className={`w-full text-white py-2 rounded-md font-semibold transition ${
+                isLoading
+                  ? 'bg-teal-400 cursor-not-allowed'
+                  : 'bg-teal-600 hover:bg-teal-500'
+              }`}
             >
               LOGIN
             </button>
@@ -94,7 +132,7 @@ const Login = () => {
         </div>
       </div>
 
-      {/* Right Side - hidden on mobile */}
+      {/* Right Side */}
       <div
         className="hidden md:flex w-1/2 justify-center items-center"
         data-aos="zoom-in"

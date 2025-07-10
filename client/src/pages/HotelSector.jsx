@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import HeroSection from '../components/SectionHeader';
-import HotelHealthChallenges from '../components/HotelHealthChallenges';
-import HealthPackagesAccordion from '../components/HealthPackagesAccordion';
-import WellnessPackages from '../components/WellnessPackages';
-import InHouseHealthcare from '../components/InHouseHealthcare';
-import WhatWillYouGain from '../components/UniqueWhyNizcareSection';
-import Footer from '../components/Footer';
+import HeroSection from '../components/Hotel-sector/SectionHeader';
+import HotelHealthChallenges from '../components/Hotel-sector/HotelHealthChallenges';
+import HealthPackagesAccordion from '../components/Hotel-sector/HealthPackagesAccordion';
+import WellnessPackages from '../components/Hotel-sector/WellnessPackages';
+import InHouseHealthcare from '../components/Hotel-sector/InHouseHealthcare';
+import WhatWillYouGain from '../components/Hotel-sector/UniqueWhyNizcareSection';    
+import Footer from '../components/Hotel-sector/Footer';
 
 const HotelSector = () => {
     const [loading, setLoading] = useState(false);

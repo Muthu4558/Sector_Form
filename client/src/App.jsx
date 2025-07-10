@@ -6,6 +6,7 @@ import Hotel from './pages/HotelSector.jsx';
 import Admin from './pages/Admin.jsx';
 import Login from './pages/Login.jsx';
 import PrivateRoute from './components/PrivateRoute.jsx';
+import ItSector from './pages/ItSector.jsx';
 
 const App = () => {
   return (
@@ -14,7 +15,8 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/sector-hotel" element={<Hotel />} />
+          <Route path="/hotel" element={<Hotel />} />
+          <Route path="/it" element={<ItSector />} />
           <Route path="/login" element={<Login />} />
           <Route
             path="/admin"
