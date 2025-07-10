@@ -78,9 +78,12 @@ const WellnessPackages = () => {
               </h3>
               <ul className="space-y-3">
                 {pkg.benefits.map((benefit, i) => (
-                  <li key={i} className="flex items-start gap-2 text-slate-800 font-medium">
-                    <BsCheckCircleFill className="text-teal-500 mt-1" />
-                    {benefit}
+                  <li
+                    key={i}
+                    className="flex items-start gap-2 text-slate-800 font-medium leading-snug"
+                  >
+                    <BsCheckCircleFill className="text-teal-500 mt-1 shrink-0" />
+                    <span className="text-left">{benefit}</span>
                   </li>
                 ))}
               </ul>
