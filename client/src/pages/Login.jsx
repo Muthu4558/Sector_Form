@@ -43,7 +43,7 @@ const Login = () => {
 
       {/* Full-screen Loading Spinner */}
       {isLoading && (
-        <div className="absolute inset-0 z-50 bg-black bg-opacity-20 backdrop-blur-sm flex items-center justify-center">
+        <div className="absolute inset-0 z-50 bg-opacity-20 backdrop-blur-sm flex items-center justify-center">
           <div className="flex flex-col items-center">
             <svg
               className="animate-spin h-10 w-10 text-teal-600 mb-3"
