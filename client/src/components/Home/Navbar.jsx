@@ -1,37 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
 import NizLogo from '../../assets/nizcare-logo.png';
 
 const sectorList = [
   { name: 'Cement', path: '/cement' },
   { name: 'Fertilizer', path: '/fertilizer' },
-  { name: 'Food Processing', path: '/food-processing' },
-  { name: 'Steel', path: '/steel' },
+  { name: 'Automobile', path: '/automobile' },
   { name: 'Pharma', path: '/pharma' },
-  { name: 'Hotels', path: '/hotels' },
+  { name: 'Hotels', path: '/hotel' },
   { name: 'IT', path: '/it' },
   { name: 'Banks', path: '/banks' },
   { name: 'Airlines', path: '/airlines' },
-  { name: 'Leather Industry', path: '/leather-industry' },
-  { name: 'Heavy Industry', path: '/heavy-industry' },
+  { name: 'Leather', path: '/leather-industry' },
   { name: 'Cottage', path: '/cottage' },
   { name: 'Chemical', path: '/chemical' },
   { name: 'Mining', path: '/mining' },
+  { name: 'Heavy', path: '/heavy-industry' },
   { name: 'Textile', path: '/textile' },
-  { name: 'Automobile', path: '/automobile' },
   { name: 'ITES', path: '/ites' },
-  { name: 'Aerospace & Defense', path: '/aerospace-defense' },
-  { name: 'Metals', path: '/metals' },
-  { name: 'Petroleum Industry', path: '/petroleum' },
-  { name: 'Telecommunication', path: '/telecom' },
-  { name: 'Ports, Shipping & Maritime', path: '/shipping' },
-  { name: 'Water Treatment & Sanitation Services', path: '/water-treatment' },
-  { name: 'Dairy & Livestock Industry', path: '/dairy' },
-  { name: 'Tourism & Travel', path: '/tourism' },
+  { name: 'Food', path: '/food' },
+  { name: 'Port', path: '/shipping' },
+  { name: 'Petroleum', path: '/petroleum' },
+  { name: 'Telecom', path: '/telecom' },
+  { name: 'Water Treatment', path: '/water-treatment' },
+  { name: 'Dairy', path: '/dairy' },
+  { name: 'Tourism', path: '/tourism' },
+  { name: 'Steel', path: '/steel' },
+  { name: 'Aerospace', path: '/aerospace-defense' },
   { name: 'Paper', path: '/paper' },
-  { name: 'Real Estate Tech', path: '/real-estate' },
-  { name: 'Sports Industry', path: '/sports' },
+  { name: 'Real Estate', path: '/real-estate' },
+  { name: 'Sports', path: '/sports' },
+  { name: 'Metals', path: '/metals' },
 ];
 
 const Navbar = () => {
@@ -39,18 +39,19 @@ const Navbar = () => {
   const [isSectorOpen, setIsSectorOpen] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const location = useLocation();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const toggleSectorDropdown = () => setIsSectorOpen(!isSectorOpen);
 
-  // Scroll behavior
+  // Hide/show navbar on scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY && currentScrollY > 80) {
-        setShowNavbar(false); // scrolling down
+        setShowNavbar(false); // down
       } else {
-        setShowNavbar(true); // scrolling up
+        setShowNavbar(true); // up
       }
       setLastScrollY(currentScrollY);
     };
@@ -59,26 +60,30 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
+  // Scroll to section for #path
+  const handleScrollTo = (selector) => {
+    const el = document.querySelector(selector);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    setIsOpen(false); // close mobile menu
+  };
+
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Services', path: '/services' },
+    { name: 'Home', path: '#home' },
+    { name: 'About', path: '#about' },
     { name: 'Sectors', path: '/sectors', isDropdown: true },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
+    { name: 'Services', path: '#services' },
   ];
 
   return (
-    <nav
-      className={`bg-white shadow-md fixed w-full z-50 transition-transform duration-300 ${
-        showNavbar ? 'translate-y-0' : '-translate-y-full'
-      }`}
-    >
+    <nav className={`bg-white shadow-md fixed w-full z-50 transition-transform duration-300 ${showNavbar ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
 
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link to="/" className="text-teal-600 font-bold text-2xl">
+            <Link to="/">
               <img src={NizLogo} width={150} alt="Nizcare Logo" />
             </Link>
           </div>
@@ -89,7 +94,7 @@ const Navbar = () => {
               item.isDropdown ? (
                 <div key={item.name} className="relative group">
                   <div className="flex items-center text-gray-700 hover:text-teal-600 font-medium transition cursor-pointer">
-                    <span>Sectors</span>
+                    <span>{item.name}</span>
                     <FiChevronDown className="ml-1" />
                   </div>
                   <div className="absolute left-0 mt-2 bg-white shadow-lg border rounded-md z-50 hidden group-hover:block w-64 max-h-80 overflow-y-auto">
@@ -104,6 +109,14 @@ const Navbar = () => {
                     ))}
                   </div>
                 </div>
+              ) : item.path.startsWith('#') ? (
+                <button
+                  key={item.name}
+                  onClick={() => handleScrollTo(item.path)}
+                  className="text-gray-700 hover:text-teal-600 font-medium transition"
+                >
+                  {item.name}
+                </button>
               ) : (
                 <Link
                   key={item.name}
@@ -128,7 +141,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Nav Dropdown */}
       {isOpen && (
         <div className="md:hidden px-4 pb-4 bg-white shadow space-y-2">
           {navItems.map((item) =>
@@ -139,11 +152,7 @@ const Navbar = () => {
                   className="flex items-center justify-between py-2 cursor-pointer text-gray-700 hover:text-teal-600 font-medium"
                 >
                   <span>Sectors</span>
-                  <FiChevronDown
-                    className={`transform transition ${
-                      isSectorOpen ? 'rotate-180' : ''
-                    }`}
-                  />
+                  <FiChevronDown className={`transform transition ${isSectorOpen ? 'rotate-180' : ''}`} />
                 </div>
                 {isSectorOpen && (
                   <div className="pl-4 max-h-60 overflow-y-auto">
@@ -163,6 +172,14 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
+            ) : item.path.startsWith('#') ? (
+              <button
+                key={item.name}
+                onClick={() => handleScrollTo(item.path)}
+                className="block w-full text-left py-2 text-gray-700 hover:text-teal-600 font-medium transition"
+              >
+                {item.name}
+              </button>
             ) : (
               <Link
                 key={item.name}

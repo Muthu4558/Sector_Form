@@ -42,7 +42,7 @@ const Whyniz = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-br from-[#e0f7fa] to-[#e0f2f1] py-16 px-4 sm:px-6 lg:px-12">
+    <div id='about' className="bg-gradient-to-br from-[#e0f7fa] to-[#e0f2f1] py-16 px-4 sm:px-6 lg:px-12">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl sm:text-4xl font-bold text-teal-700 mb-4" data-aos="fade-up">
           Why Choose Nizcare for Corporate Wellness?

@@ -25,7 +25,7 @@ const Offer = () => {
   }, []);
 
   return (
-    <section className="bg-gradient-to-br from-[#e0f7fa] to-[#e0f2f1] py-16 px-4 sm:px-6 lg:px-12 text-gray-800">
+    <section id='services' className="bg-gradient-to-br from-[#e0f7fa] to-[#e0f2f1] py-16 px-4 sm:px-6 lg:px-12 text-gray-800">
       <div className="max-w-6xl mx-auto text-center">
         {/* Heading */}
         <h2

@@ -82,7 +82,7 @@ const SectorLanding = () => {
     });
 
   return (
-    <div>
+    <div id='home'>
       <Navbar />
       <div className=" bg-gradient-to-br from-[#e0f7fa] to-[#e0f2f1] px-4 sm:px-6 py-20 text-gray-800">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-12">
