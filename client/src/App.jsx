@@ -7,6 +7,7 @@ import Admin from './pages/Admin.jsx';
 import Login from './pages/Login.jsx';
 import PrivateRoute from './components/PrivateRoute.jsx';
 import ItSector from './pages/ItSector.jsx';
+import FoodSector from './pages/FoodSector.jsx';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/hotel" element={<Hotel />} />
           <Route path="/it" element={<ItSector />} />
+          <Route path="/food" element={<FoodSector />} />
           <Route path="/login" element={<Login />} />
           <Route
             path="/admin"
