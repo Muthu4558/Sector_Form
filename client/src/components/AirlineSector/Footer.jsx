@@ -16,7 +16,7 @@ const ContactSection = () => {
         className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-10 drop-shadow-md"
         data-aos="fade-up"
       >
-      Nizcare - Keeping Your Crew<span className="text-teal-600">Airworthy</span>. Always.
+      Nizcare - Keeping Your Crew <span className="text-teal-600">Airworthy</span>. Always.
       </h2>
 
       {/* Contact Cards */}
