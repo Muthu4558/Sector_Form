@@ -8,7 +8,7 @@ import PrivateRoute from './components/PrivateRoute.jsx';
 import ItSector from './pages/ItSector.jsx';
 import FoodSector from './pages/FoodSector.jsx';
 import AirlineSector from './pages/AirlineSector.jsx';
-
+import CementSector from './pages/CementSector.jsx';
 
 const App = () => {
   return (
@@ -21,6 +21,7 @@ const App = () => {
           <Route path="/it" element={<ItSector />} />
           <Route path="/food" element={<FoodSector />} />
           <Route path="/airlines" element={<AirlineSector/>} />
+          <Route path="/cement" element={<CementSector/>} />
           <Route path="/login" element={<Login />} />
           <Route
             path="/admin"
