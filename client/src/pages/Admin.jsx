@@ -158,7 +158,7 @@ const Admin = () => {
             <option value="Hotel">Hotel</option>
             <option value="IT">IT</option>
             <option value="Banks">Banks</option>
-            <option value="Airlines">Airlines</option>
+            <option value="Airline">Airline</option>
             <option value="Leather Industry">Leather Industry</option>
             <option value="Heavy industry">Heavy industry</option>
             <option value="Cottage">Cottage</option>

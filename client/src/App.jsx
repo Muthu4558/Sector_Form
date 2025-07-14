@@ -10,7 +10,6 @@ import FoodSector from './pages/FoodSector.jsx';
 import AirlineSector from './pages/AirlineSector.jsx';
 
 
-
 const App = () => {
   return (
     <>
