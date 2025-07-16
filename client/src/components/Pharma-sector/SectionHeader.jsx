@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import heroImage from '../../assets/Pharma-sector-img/cover-img-pharma.jpg';
+import heroImage from '../../assets/Pharma-sector-img/hero-img-pharma.jpg';
 import logo from '../../assets/Hotel-sector-img/logo_white.png';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
