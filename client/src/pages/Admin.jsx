@@ -231,19 +231,19 @@ const Admin = () => {
                   </td>
                   <td className="px-4 py-3 space-y-1">
                     <div className="font-semibold text-gray-800">
-                      Company Name: {entry.companyName}
+                      {entry.companyName}
                     </div>
                     <div className="font-semibold text-gray-600">
-                      Employees: {entry.employeeCount}
+                      {entry.employeeCount}
                     </div>
                   </td>
                   <td className="px-4 py-3 space-y-1">
-                    <div className="font-semibold text-gray-600">HR: {entry.hrSpocName}</div>
-                    <div className="font-semibold text-gray-600">Email: {entry.email}</div>
-                    <div className="font-semibold text-gray-600">Mobile: {entry.mobile}</div>
-                    <div className="font-semibold text-gray-600">State: {entry.state}</div>
-                    <div className="font-semibold text-gray-600">District: {entry.district}</div>
-                    <div className="font-semibold text-gray-600">City: {entry.city}</div>
+                    <div className="font-semibold text-gray-600">{entry.hrSpocName}</div>
+                    <div className="font-semibold text-gray-600">{entry.email}</div>
+                    <div className="font-semibold text-gray-600">{entry.mobile}</div>
+                    <div className="font-semibold text-gray-600">{entry.state}</div>
+                    <div className="font-semibold text-gray-600">{entry.district}</div>
+                    <div className="font-semibold text-gray-600">{entry.city}</div>
                   </td>
                   <td className="px-4 py-3 text-left">
                     <div className="space-y-2">
