@@ -71,9 +71,9 @@ const Offer = () => {
             Whether you're managing a 50-member startup or a 10,000-strong enterprise,
             Nizcare ensures pan-India wellness coordination across branches and factories.
           </p>
-          <button className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-full font-medium shadow-md transition duration-300">
+          {/* <button className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-full font-medium shadow-md transition duration-300">
             Book a Free Demo
-          </button>
+          </button> */}
         </div>
       </div>
     </section>
