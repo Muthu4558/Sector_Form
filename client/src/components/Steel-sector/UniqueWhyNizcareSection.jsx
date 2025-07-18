@@ -126,7 +126,7 @@ const UniqueWhyNizcareSection = () => {
             Unlock exclusive rates for annual partnerships.
           </p>
           
-        </div> 
+        </div>  
       
           
 

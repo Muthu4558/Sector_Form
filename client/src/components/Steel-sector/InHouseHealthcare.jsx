@@ -71,12 +71,12 @@ const InHouseHealthcare = () => {
                     data-aos="fade-up"
                 >
                     <h2 className="text-3xl md:text-4xl font-bold mb-2">
-                       The Clinic that comes to {' '} 
-                        <span className="text-yellow-400">Mine</span>
+                       From First Aid to Forecasting Risks – {' '} 
+                        <span className="text-yellow-400">All On-Site</span>
                         
                     </h2>
                     <p className="text-lg text-white/90 max-w-4xl mx-auto">
-                        Nizcare establishes industry-relevant On-Site Health Centres (OHC) at your mining site or operational hub. These centers provide,
+                        Nizcare establishes industry-relevant On-Site Health Centres (OHC) at your Steel Plants or operational hub. These centers provide,
                     </p>
                 </div>
 
