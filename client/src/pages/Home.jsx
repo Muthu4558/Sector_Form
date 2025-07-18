@@ -105,10 +105,10 @@ const SectorLanding = () => {
   const circles = isMobile
     ? []
     : [
-        { items: sectors.slice(0, 9), radius: 100 },
-        { items: sectors.slice(9, 18), radius: 160 },
-        { items: sectors.slice(18, 28), radius: 230 },
-      ];
+      { items: sectors.slice(0, 9), radius: 100 },
+      { items: sectors.slice(9, 18), radius: 160 },
+      { items: sectors.slice(18, 28), radius: 230 },
+    ];
 
   // Revised renderRing
   const renderRing = ({ items, radius }, circleIndex) =>
@@ -192,7 +192,7 @@ const SectorLanding = () => {
       <Navbar />
       <div className="bg-gradient-to-br from-[#e0f7fa] to-[#e0f2f1] px-4 sm:px-6 py-20 text-gray-800">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-12">
-          <div className="flex flex-col mt-15 justify-center items-center md:items-start text-center md:text-left h-full">
+          <div className="flex flex-col mt-15 justify-center items-center md:items-start text-center md:text-left h-full animate-blur-fade">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-teal-600 mb-6">
               Sector-Specific Corporate Health & Wellness Solutions – Pan India
             </h1>
@@ -203,6 +203,7 @@ const SectorLanding = () => {
               Book Free Audit
             </button>
           </div>
+
           {!isMobile ? (
             <div className="relative mx-auto w-[500px] h-[500px] mt-8 select-none">
               <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
@@ -213,7 +214,7 @@ const SectorLanding = () => {
               </div>
               <div className="absolute inset-0 z-10 cursor-grab">
                 {circles.map((circle, idx) => (
-                  <div key={idx} className="absolute inset-0 pointer-events-none">
+                  <div key={idx} className="absolute inset-0 pointer-events-auto">
                     {renderRing(circle, idx)}
                   </div>
                 ))}

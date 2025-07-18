@@ -124,7 +124,7 @@ const Whyniz = () => {
         </p>
         <div className="mt-12 flex flex-col md:flex-row md:space-x-10 items-stretch justify-between relative">
           {/* LEFT COLUMN: RING MODEL */}
-          <div className="md:w-2/5 flex-shrink-0 flex flex-col items-center md:items-end relative">
+          <div className="md:w-2/5 flex-shrink-0 flex flex-col items-center md:items-end relative mt-25">
             <div
               className={`
                 hidden md:flex

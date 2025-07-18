@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
-import NizLogo from '../../assets/nizcare-logo.png';
+import NizLogo from '../../assets/logo.png';
 
 const sectorList = [
   { name: 'Cement', path: '/cement' },
@@ -44,15 +44,10 @@ const Navbar = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
   const toggleSectorDropdown = () => setIsSectorOpen(!isSectorOpen);
 
-  // Hide/show navbar on scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 80) {
-        setShowNavbar(false); // down
-      } else {
-        setShowNavbar(true); // up
-      }
+      setShowNavbar(currentScrollY <= lastScrollY || currentScrollY < 80);
       setLastScrollY(currentScrollY);
     };
 
@@ -60,13 +55,12 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  // Scroll to section for #path
   const handleScrollTo = (selector) => {
     const el = document.querySelector(selector);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-    setIsOpen(false); // close mobile menu
+    setIsOpen(false);
   };
 
   const navItems = [
@@ -77,43 +71,50 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`bg-white shadow-md fixed w-full z-50 transition-transform duration-300 ${showNavbar ? 'translate-y-0' : '-translate-y-full'}`}>
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${showNavbar ? 'translate-y-0' : '-translate-y-full'
+        } bg-white/30 backdrop-blur-lg shadow-md border-b border-white/10 animate-fade-in`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link to="/">
-              <img src={NizLogo} width={150} alt="Nizcare Logo" />
-            </Link>
-          </div>
+          <Link to="/">
+            <img src={NizLogo} width={150} alt="Nizcare Logo" />
+          </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex space-x-8 items-center">
             {navItems.map((item) =>
               item.isDropdown ? (
-                <div key={item.name} className="relative group">
-                  <div className="flex items-center text-gray-700 hover:text-teal-600 font-medium transition cursor-pointer">
+                <div key={item.name} className="relative">
+                  <button
+                    onClick={toggleSectorDropdown}
+                    className="flex items-center text-gray-800 hover:text-teal-600 font-medium transition cursor-pointer"
+                  >
                     <span>{item.name}</span>
-                    <FiChevronDown className="ml-1" />
-                  </div>
-                  <div className="absolute left-0 mt-2 bg-white shadow-lg border rounded-md z-50 hidden group-hover:block w-64 max-h-80 overflow-y-auto">
-                    {sectorList.map((sector) => (
-                      <Link
-                        key={sector.name}
-                        to={sector.path}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50 hover:text-teal-600"
-                      >
-                        {sector.name}
-                      </Link>
-                    ))}
-                  </div>
+                    <FiChevronDown className={`ml-1 transform transition ${isSectorOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  {isSectorOpen && (
+                    <div className="absolute left-0 mt-2 bg-white backdrop-blur-lg border border-gray-200 shadow-lg rounded-md z-50 w-64 max-h-80 overflow-y-auto">
+                      {sectorList.map((sector) => (
+                        <Link
+                          key={sector.name}
+                          to={sector.path}
+                          onClick={() => setIsSectorOpen(false)}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50 hover:text-teal-600"
+                        >
+                          {sector.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
+
               ) : item.path.startsWith('#') ? (
                 <button
                   key={item.name}
                   onClick={() => handleScrollTo(item.path)}
-                  className="text-gray-700 hover:text-teal-600 font-medium transition"
+                  className="text-gray-800 hover:text-teal-600 font-medium transition"
                 >
                   {item.name}
                 </button>
@@ -121,7 +122,7 @@ const Navbar = () => {
                 <Link
                   key={item.name}
                   to={item.path}
-                  className="text-gray-700 hover:text-teal-600 font-medium transition"
+                  className="text-gray-800 hover:text-teal-600 font-medium transition"
                 >
                   {item.name}
                 </Link>
@@ -133,7 +134,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={toggleMenu}
-              className="text-gray-700 hover:text-teal-600 focus:outline-none"
+              className="text-gray-800 hover:text-teal-600 focus:outline-none"
             >
               {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
             </button>
@@ -143,16 +144,18 @@ const Navbar = () => {
 
       {/* Mobile Nav Dropdown */}
       {isOpen && (
-        <div className="md:hidden px-4 pb-4 bg-white shadow space-y-2">
+        <div className="md:hidden px-4 pb-4 bg-white/80 backdrop-blur-lg shadow space-y-2">
           {navItems.map((item) =>
             item.isDropdown ? (
               <div key={item.name}>
                 <div
                   onClick={toggleSectorDropdown}
-                  className="flex items-center justify-between py-2 cursor-pointer text-gray-700 hover:text-teal-600 font-medium"
+                  className="flex items-center justify-between py-2 cursor-pointer text-gray-800 hover:text-teal-600 font-medium"
                 >
                   <span>Sectors</span>
-                  <FiChevronDown className={`transform transition ${isSectorOpen ? 'rotate-180' : ''}`} />
+                  <FiChevronDown
+                    className={`transform transition ${isSectorOpen ? 'rotate-180' : ''}`}
+                  />
                 </div>
                 {isSectorOpen && (
                   <div className="pl-4 max-h-60 overflow-y-auto">
@@ -164,7 +167,7 @@ const Navbar = () => {
                           setIsOpen(false);
                           setIsSectorOpen(false);
                         }}
-                        className="block py-1 text-sm text-gray-700 hover:text-teal-600"
+                        className="block py-1 text-sm text-gray-800 hover:text-teal-600"
                       >
                         {sector.name}
                       </Link>
@@ -176,7 +179,7 @@ const Navbar = () => {
               <button
                 key={item.name}
                 onClick={() => handleScrollTo(item.path)}
-                className="block w-full text-left py-2 text-gray-700 hover:text-teal-600 font-medium transition"
+                className="block w-full text-left py-2 text-gray-800 hover:text-teal-600 font-medium transition"
               >
                 {item.name}
               </button>
@@ -185,7 +188,7 @@ const Navbar = () => {
                 key={item.name}
                 to={item.path}
                 onClick={() => setIsOpen(false)}
-                className="block py-2 text-gray-700 hover:text-teal-600 font-medium transition"
+                className="block py-2 text-gray-800 hover:text-teal-600 font-medium transition"
               >
                 {item.name}
               </Link>

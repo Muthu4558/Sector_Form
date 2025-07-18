@@ -278,15 +278,7 @@ const Offer = () => {
             Whether you're managing a 50-member startup or a 10,000-strong enterprise,
             Nizcare ensures pan-India wellness coordination across branches and factories.
           </motion.p>
-          <motion.button
-            whileHover={{
-              scale: 1.085,
-              boxShadow: "0 8px 32px 0 rgba(18, 194, 175, 0.21)"
-            }}
-            className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-full font-medium shadow-md transition duration-300"
-          >
-            Book a Free Demo
-          </motion.button>
+         
         </motion.div>
       </div>
     </section>
