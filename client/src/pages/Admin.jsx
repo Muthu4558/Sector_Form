@@ -152,7 +152,7 @@ const Admin = () => {
             <option value="All">All Sectors</option>
             <option value="Cement">Cement</option>
             <option value="Fertilizer">Fertilizer</option>
-            <option value="Food processing">Food processing</option>
+            <option value="Food">Food</option>
             <option value="Steel">Steel</option>
             <option value="Pharma">Pharma</option>
             <option value="Hotel">Hotel</option>
