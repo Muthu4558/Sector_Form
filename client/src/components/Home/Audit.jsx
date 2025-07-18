@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import {
@@ -7,8 +7,11 @@ import {
   FaChartPie,
   FaBullseye,
 } from 'react-icons/fa';
+import HotelSectorModal from './MainformModal';
 
 const Audit = () => {
+  const [showModal, setShowModal] = useState(false);
+
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
@@ -18,6 +21,8 @@ const Audit = () => {
 
       {/* Floating background animation */}
       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-72 h-72 bg-teal-200 rounded-full opacity-30 blur-3xl animate-pulse z-0"></div>
+      {/* Modal */}
+      <HotelSectorModal open={showModal} onClose={() => setShowModal(false)} />
 
       <div className="relative z-10 max-w-5xl mx-auto text-center">
 
@@ -61,15 +66,20 @@ const Audit = () => {
           data-aos="zoom-in-up"
           data-aos-delay="700"
         >
-          {['✅ Schedule a Demo', '✅ Request a Quote', '✅ Talk to an Expert'].map((text, i) => (
-            <button
-              key={i}
-              className="relative group overflow-hidden px-6 py-3 rounded-full bg-teal-600 text-white font-semibold shadow hover:bg-teal-700 transition-all duration-300"
-            >
-              <span className="absolute w-full h-full bg-white opacity-10 group-hover:scale-150 scale-100 transition-transform duration-500 rounded-full" />
-              {text}
-            </button>
-          ))}
+          <button
+            className="relative group overflow-hidden px-6 py-3 rounded-full bg-teal-600 text-white font-semibold shadow hover:bg-teal-700 transition-all duration-300"
+            onClick={() => setShowModal(true)} // <-- ADD
+          >
+            <span className="absolute w-full h-full bg-white opacity-10 group-hover:scale-150 scale-100 transition-transform duration-500 rounded-full" />
+            ✅ Schedule a Demo
+          </button>
+          <button
+            className="relative group overflow-hidden px-6 py-3 rounded-full bg-teal-600 text-white font-semibold shadow hover:bg-teal-700 transition-all duration-300"
+            onClick={() => window.open('tel:YOUR_PHONE_NUMBER', '_self')}
+          >
+            <span className="absolute w-full h-full bg-white opacity-10 group-hover:scale-150 scale-100 transition-transform duration-500 rounded-full" />
+            ✅ Talk to an Expert
+          </button>
         </div>
       </div>
     </section>

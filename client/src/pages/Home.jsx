@@ -7,6 +7,7 @@ import Whyniz from '../components/Home/Whyniz';
 import Offer from '../components/Home/Offer';
 import Audit from '../components/Home/Audit';
 import Footer from '../components/Home/Footer';
+import HotelSectorModal from '../components/Home/MainformModal';
 
 const sectors = [
   { name: 'Cement', route: '/cement' },
@@ -42,6 +43,7 @@ const sectors = [
 const SectorLanding = () => {
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const [rotationAngles, setRotationAngles] = useState([0, 0, 0]);
   const dragInfo = useRef({
@@ -199,7 +201,9 @@ const SectorLanding = () => {
             <p className="text-base sm:text-lg text-gray-700 mb-4 max-w-md">
               Revolutionize Employee Health. Boost Business Performance.
             </p>
-            <button className="bg-teal-600 text-white px-6 py-3 rounded-full hover:bg-teal-700 transition select-none">
+            <button 
+            onClick={() => setShowModal(true)}
+            className="bg-teal-600 text-white px-6 py-3 rounded-full hover:bg-teal-700 transition select-none">
               Book Free Audit
             </button>
           </div>
@@ -255,6 +259,7 @@ const SectorLanding = () => {
       <Offer />
       <Audit />
       <Footer />
+      <HotelSectorModal open={showModal} onClose={() => setShowModal(false)} />
     </div>
   );
 };
