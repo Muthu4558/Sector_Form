@@ -13,6 +13,7 @@ import PharmaSector from './pages/PharmaSector.jsx';
 import MiningSector from './pages/MiningSector.jsx';
 import FertilizerSector from './pages/FertilizerSector.jsx';
 import SteelSector from './pages/SteelSector.jsx';
+import ITESSector from './pages/ITESSector.jsx';
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/mining" element={<MiningSector/>} />
           <Route path="/fertilizer" element={<FertilizerSector/>} />
           <Route path="/steel" element={<SteelSector/>} />
+          <Route path="/ites" element={<ITESSector/>} />
           <Route path="/login" element={<Login />} />
           <Route
             path="/admin"
