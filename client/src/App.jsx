@@ -23,7 +23,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/hotel" element={<Hotel />} />
-          <Route path="/it" element={<ItSector />} />
+          {/* <Route path="/it" element={<ItSector />} /> */}
           <Route path="/food" element={<FoodSector />} />
           <Route path="/airlines" element={<AirlineSector/>} />
           <Route path="/cement" element={<CementSector/>} />
@@ -31,7 +31,7 @@ const App = () => {
           <Route path="/mining" element={<MiningSector/>} />
           <Route path="/fertilizer" element={<FertilizerSector/>} />
           <Route path="/steel" element={<SteelSector/>} />
-          <Route path="/ites" element={<ITESSector/>} />
+          <Route path="/ites&it" element={<ITESSector/>} />
           <Route path="/login" element={<Login />} />
           <Route
             path="/admin"
