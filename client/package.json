@@ -14,7 +14,7 @@
     "aos": "^2.3.4",
     "axios": "^1.10.0",
     "file-saver": "^2.0.5",
-    "framer-motion": "^12.23.0",
+    "framer-motion": "^12.23.6",
     "intl-tel-input": "^25.3.1",
     "jspdf": "^3.0.1",
     "jspdf-autotable": "^5.0.2",
