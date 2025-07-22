@@ -7,20 +7,15 @@ import { FaHeartbeat, FaUserCheck, FaChartLine, FaBriefcaseMedical } from 'react
 function describeArc(x, y, radius, startAngle, endAngle) {
   const start = polarToCartesian(x, y, radius, endAngle);
   const end = polarToCartesian(x, y, radius, startAngle);
-
   const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
-
-  const d = [
+  return [
     "M", start.x, start.y,
     "A", radius, radius, 0, largeArcFlag, 0, end.x, end.y
   ].join(" ");
-
-  return d;
 }
 
 function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
-  const angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
-
+  const angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
   return {
     x: centerX + (radius * Math.cos(angleInRadians)),
     y: centerY + (radius * Math.sin(angleInRadians))
@@ -29,7 +24,7 @@ function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
 
 const Whyniz = () => {
   useEffect(() => {
-    AOS.init({ duration: 1000 });
+    AOS.init({ duration: 1000, once: true });
   }, []);
 
   const benefits = [
@@ -55,7 +50,7 @@ const Whyniz = () => {
       icon: <FaBriefcaseMedical className="text-teal-600 text-3xl" />,
       title: 'Impact on Business KPIs',
       description: (
-        <ul className="list-none list-inside text-sm mt-1 space-y-1 ">
+        <ul className="list-none list-inside text-sm mt-1 space-y-1">
           <li>✔ Increase employee productivity</li>
           <li>✔ Reduce sick leaves & absenteeism</li>
           <li>✔ Decrease hospitalization risks</li>
@@ -65,11 +60,9 @@ const Whyniz = () => {
     },
   ];
 
-  // For scroll progress and animating steps
   const sectionRef = useRef(null);
   const [activeStep, setActiveStep] = useState(0);
 
-  // Update activeStep based on scroll
   useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current) return;
@@ -88,9 +81,7 @@ const Whyniz = () => {
         return;
       }
 
-      // Progress 0 to 1 as we scroll through
       const progress = Math.min(1, Math.max(0, (windowHeight / 2 - rect.top) / (rect.height - windowHeight / 6)));
-      // Step zones: 0,1,2,3,4 (4 = all done)
       const step = Math.floor(progress * benefits.length + 0.15);
       setActiveStep(step);
     };
@@ -98,10 +89,8 @@ const Whyniz = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-    // eslint-disable-next-line
   }, []);
 
-  // Mobile: stacked, Desktop: split with sticky
   return (
     <div
       id="about"
@@ -122,22 +111,15 @@ const Whyniz = () => {
         >
           Empower your employees. Strengthen your business. See measurable change with our health-first, data-driven wellness approach.
         </p>
+
         <div className="mt-12 flex flex-col md:flex-row md:space-x-10 items-stretch justify-between relative">
           {/* LEFT COLUMN: RING MODEL */}
           <div className="md:w-2/5 flex-shrink-0 flex flex-col items-center md:items-end relative">
             <div
-              className={`
-                hidden md:flex
-                sticky top-28 self-start
-                flex-col items-center
-                z-10
-                transition-all duration-700
-              `}
+              className="hidden md:flex sticky top-28 self-start flex-col items-center z-10 transition-all duration-700"
               style={{ minHeight: 390 }}
             >
-              {/* SVG Ring with 4 segments */}
               <RingProgress steps={4} active={activeStep} />
-              {/* Step indicators */}
               <div className="flex flex-col items-center mt-7 space-y-2">
                 {benefits.map((b, i) => (
                   <div
@@ -160,12 +142,18 @@ const Whyniz = () => {
                 key={index}
                 className={`
                   bg-white p-6 rounded-xl shadow-md
-                  transition-all duration-500
-                  text-left flex items-start space-x-4
-                  opacity-100
-                  ${activeStep > index ? 'opacity-100 scale-100 translate-y-0'
-                    : activeStep === index ? 'opacity-100 scale-105 translate-y-0'
-                    : 'opacity-60 scale-95 translate-y-5'}
+                  flex items-start space-x-4
+                  transition-all duration-700 ease-[cubic-bezier(0.4, 0, 0.2, 1)]
+                  will-change-transform
+                  transform
+                  hover:scale-[1.03] hover:shadow-xl
+                  ${
+                    activeStep > index
+                      ? 'opacity-100 scale-100 translate-y-0'
+                      : activeStep === index
+                      ? 'opacity-100 scale-105 translate-y-0'
+                      : 'opacity-50 scale-95 translate-y-5'
+                  }
                   z-[${index + 1}]
                 `}
                 data-aos="zoom-in"
@@ -187,22 +175,19 @@ const Whyniz = () => {
   );
 };
 
-// SVG ring, fills up to step 'active'
+// SVG ring showing progress
 function RingProgress({ steps = 4, active }) {
   const size = 210, r = 80, stroke = 22, center = size / 2;
-  // Colors
   const baseColor = '#b2dfdb';
   const activeColor = '#14b8a6';
 
-  // Each segment is 90deg for 4 steps
   const segmentAngles = Array.from({ length: steps }, (_, i) => ({
     start: i * 90,
-    end: (i + 1) * 90 - 7, // gap of 7deg for visual separation
+    end: (i + 1) * 90 - 7,
   }));
 
   return (
     <svg width={size} height={size} className="mb-2">
-      {/* All segments as background */}
       {segmentAngles.map((seg, i) => (
         <path
           key={i}
@@ -217,7 +202,6 @@ function RingProgress({ steps = 4, active }) {
           }}
         />
       ))}
-      {/* Filled segments */}
       {segmentAngles.map((seg, i) =>
         i < active ? (
           <path
