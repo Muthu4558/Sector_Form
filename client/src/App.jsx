@@ -5,7 +5,6 @@ import Hotel from './pages/HotelSector.jsx';
 import Admin from './pages/Admin.jsx';
 import Login from './pages/Login.jsx';
 import PrivateRoute from './components/PrivateRoute.jsx';
-import ItSector from './pages/ItSector.jsx';
 import FoodSector from './pages/FoodSector.jsx';
 import AirlineSector from './pages/AirlineSector.jsx';
 import CementSector from './pages/CementSector.jsx';
@@ -15,6 +14,7 @@ import FertilizerSector from './pages/FertilizerSector.jsx';
 import SteelSector from './pages/SteelSector.jsx';
 import ITESSector from './pages/ITESSector.jsx';
 import LeatherSector from './pages/LeatherSector.jsx';
+import BankSector from './pages/BankSector.jsx';
 
 const App = () => {
   return (
@@ -24,7 +24,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/hotel" element={<Hotel />} />
-          <Route path="/it" element={<ItSector />} />
+          {/* <Route path="/it" element={<ItSector />} /> */}
           <Route path="/food" element={<FoodSector />} />
           <Route path="/airlines" element={<AirlineSector/>} />
           <Route path="/cement" element={<CementSector/>} />
@@ -32,8 +32,9 @@ const App = () => {
           <Route path="/mining" element={<MiningSector/>} />
           <Route path="/fertilizer" element={<FertilizerSector/>} />
           <Route path="/steel" element={<SteelSector/>} />
-          <Route path="/ites" element={<ITESSector/>} />
-          <Route path="/leather" element={<LeatherSector/>} />
+          <Route path="/ites&it" element={<ITESSector/>} />
+          <Route path="/leather-industry" element={<LeatherSector/>} />
+          <Route path="/banks" element={<BankSector/>} />
           <Route path="/login" element={<Login />} />
           <Route
             path="/admin"
