@@ -114,7 +114,7 @@ const Whyniz = () => {
 
         <div className="mt-12 flex flex-col md:flex-row md:space-x-10 items-stretch justify-between relative">
           {/* LEFT COLUMN: RING MODEL */}
-          <div className="md:w-2/5 flex-shrink-0 flex flex-col items-center md:items-end relative">
+          <div className="md:w-2/5 flex-shrink-0 flex flex-col items-center md:items-end relative mt-25">
             <div
               className="hidden md:flex sticky top-28 self-start flex-col items-center z-10 transition-all duration-700"
               style={{ minHeight: 390 }}
