@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
 import NizLogo from '../../assets/logo.png';
@@ -9,7 +9,6 @@ const sectorList = [
   { name: 'Automobile', path: '/automobile' },
   { name: 'Pharma', path: '/pharma' },
   { name: 'Hotels', path: '/hotel' },
-  // { name: 'IT', path: '/it' },
   { name: 'Banks', path: '/banks' },
   { name: 'Airlines', path: '/airlines' },
   { name: 'Leather', path: '/leather-industry' },
@@ -34,7 +33,7 @@ const sectorList = [
   { name: 'Metals', path: '/metals' },
 ];
 
-const Navbar = () => {
+const Navbar = ({ transparent }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSectorOpen, setIsSectorOpen] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
@@ -50,7 +49,6 @@ const Navbar = () => {
       setShowNavbar(currentScrollY <= lastScrollY || currentScrollY < 80);
       setLastScrollY(currentScrollY);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
@@ -72,8 +70,14 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${showNavbar ? 'translate-y-0' : '-translate-y-full'
-        } bg-white/30 backdrop-blur-lg shadow-md border-b border-white/10 animate-fade-in`}
+      className={
+        `fixed top-0 left-0 w-full z-50 transition-transform duration-300 
+        ${showNavbar ? 'translate-y-0' : '-translate-y-full'}
+        ${transparent 
+          ? 'bg-transparent shadow-none border-none backdrop-blur-0'
+          : 'bg-white/30 backdrop-blur-lg shadow-md border-b border-white/10 animate-fade-in'
+        }`
+      }
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
@@ -109,7 +113,6 @@ const Navbar = () => {
                     </div>
                   )}
                 </div>
-
               ) : item.path.startsWith('#') ? (
                 <button
                   key={item.name}

@@ -53,16 +53,27 @@ const SectorLanding = () => {
     circleIndex: null,
   });
 
+  // ---- HERO/VIDEO REF and NAVBAR transparency logic ----
+  const heroRef = useRef(null);
+  const [isHeroInView, setIsHeroInView] = useState(true);
+
+  useEffect(() => {
+    if (!heroRef.current) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => setIsHeroInView(entry.isIntersecting),
+      { threshold: 0.5 }
+    );
+    observer.observe(heroRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     AOS.init({ duration: 100 });
-
     const handleResize = () => setIsMobile(window.innerWidth < 640);
     handleResize();
     window.addEventListener('resize', handleResize);
 
-    // Faster & smoother
     let animationFrameId;
-
     const animate = () => {
       setRotationAngles((prev) =>
         prev.map((angle, idx) => {
@@ -107,19 +118,17 @@ const SectorLanding = () => {
   const circles = isMobile
     ? []
     : [
-      { items: sectors.slice(0, 9), radius: 100 },
-      { items: sectors.slice(9, 18), radius: 160 },
-      { items: sectors.slice(18, 28), radius: 230 },
-    ];
+        { items: sectors.slice(0, 9), radius: 100 },
+        { items: sectors.slice(9, 18), radius: 160 },
+        { items: sectors.slice(18, 28), radius: 230 },
+      ];
 
-  // Revised renderRing
+  // --- renderRing (sector carousel) ---
   const renderRing = ({ items, radius }, circleIndex) =>
     items.map((sector, i) => {
-      // We store per-item flags per render (safe in functional render)
       let pointerDown = false;
       let dragStarted = false;
       let downX = 0;
-
       const angle = ((i / items.length) * 2 * Math.PI + (rotationAngles[circleIndex] * Math.PI) / 180);
       const x = radius * Math.cos(angle);
       const y = radius * Math.sin(angle);
@@ -160,7 +169,6 @@ const SectorLanding = () => {
             pointerDown = false;
             dragStarted = false;
           }}
-
           onTouchStart={e => {
             if (!e.touches || e.touches.length !== 1) return;
             pointerDown = true;
@@ -191,7 +199,32 @@ const SectorLanding = () => {
 
   return (
     <div id="home">
-      <Navbar />
+      {/* Navbar gets transparent prop based on hero in view */}
+      <Navbar transparent={isHeroInView} />
+
+      {/* HERO VIDEO SECTION & Shadow (inline, not separate file) */}
+      <section ref={heroRef} className="relative w-full h-[100vh] flex flex-col justify-end items-center select-none overflow-hidden">
+        <video
+          className="absolute top-0 left-0 w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/static/hero-placeholder.jpg" // (optional placeholder)
+          src="/your/video.mp4" // <-- UPDATE to your actual video file location
+        />
+        {/* Shadow fade at bottom */}
+        <div
+          className="absolute bottom-0 left-0 w-full h-32 pointer-events-none"
+          style={{
+            background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.18) 65%,rgba(0,0,0,0.43) 100%)',
+            zIndex: 2,
+          }}
+        />
+        {/* You can add headline content here, if needed */}
+      </section>
+
+      {/* Rest of your page... */}
       <div className="bg-gradient-to-br from-[#e0f7fa] to-[#e0f2f1] px-4 sm:px-6 py-20 text-gray-800">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-12">
           <div className="flex flex-col mt-15 justify-center items-center md:items-start text-center md:text-left h-full animate-blur-fade">
@@ -202,8 +235,8 @@ const SectorLanding = () => {
               Revolutionize Employee Health. Boost Business Performance.
             </p>
             <button 
-            onClick={() => setShowModal(true)}
-            className="bg-teal-600 text-white px-6 py-3 rounded-full hover:bg-teal-700 transition select-none">
+              onClick={() => setShowModal(true)}
+              className="bg-teal-600 text-white px-6 py-3 rounded-full hover:bg-teal-700 transition select-none">
               Book Free Audit
             </button>
           </div>
