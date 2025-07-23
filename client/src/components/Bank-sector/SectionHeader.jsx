@@ -18,7 +18,7 @@ const HeroSection = () => {
         state: '',
         district: '',
         city: '',
-        sector: 'Leather',
+        sector: 'Banks',
         usingWellness: '',
         employeeCount: '',
         expectedFeatures: '',

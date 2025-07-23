@@ -18,7 +18,7 @@ const HeroSection = () => {
         state: '',
         district: '',
         city: '',
-        sector: 'ITES',
+        sector: 'ITES & IT',
         usingWellness: '',
         employeeCount: '',
         expectedFeatures: '',
