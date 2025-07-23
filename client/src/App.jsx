@@ -15,6 +15,7 @@ import SteelSector from './pages/SteelSector.jsx';
 import ITESSector from './pages/ITESSector.jsx';
 import LeatherSector from './pages/LeatherSector.jsx';
 import BankSector from './pages/BankSector.jsx';
+import ChemicalSector from './pages/ChemicalSector.jsx';
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="/ites&it" element={<ITESSector/>} />
           <Route path="/leather-industry" element={<LeatherSector/>} />
           <Route path="/banks" element={<BankSector/>} />
+          <Route path="/chemical" element={<ChemicalSector/>} />
           <Route path="/login" element={<Login />} />
           <Route
             path="/admin"
