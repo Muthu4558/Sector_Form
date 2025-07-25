@@ -17,6 +17,7 @@ import LeatherSector from './pages/LeatherSector.jsx';
 import BankSector from './pages/BankSector.jsx';
 import ChemicalSector from './pages/ChemicalSector.jsx';
 import TextileSector from './pages/TextileSector.jsx';
+import PetroleumSector from './pages/PetroleumSector.jsx';
 
 const App = () => {
   return (
@@ -39,8 +40,9 @@ const App = () => {
           <Route path="/banks" element={<BankSector/>} />
           <Route path="/chemical" element={<ChemicalSector/>} />
           <Route path="/textile" element={<TextileSector/>} />
+          <Route path="/petroleum" element={<PetroleumSector/>} />
           <Route path="/login" element={<Login />} />
-          <Route path="/login" element={<Login />} />
+
           <Route
             path="/admin"
             element={

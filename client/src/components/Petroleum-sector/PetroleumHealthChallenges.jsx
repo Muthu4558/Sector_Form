@@ -1,84 +1,82 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {FaTools, FaRegBuilding, FaChair } from 'react-icons/fa';
-import { BiCollapse, BiExpand } from 'react-icons/bi';
-import { GiBrain, GiHearingDisabled, GiLungs, GiHeartBeats, GiEyeball, GiHazardSign, GiStrong, GiDroplets, GiFactory } from 'react-icons/gi';
+import { FaBoxes, FaUserTie } from 'react-icons/fa';
+import {BiCollapse, BiExpand } from 'react-icons/bi';
+import { GiChemicalDrop, GiChemicalTank, GiLungs, GiBodyHeight, GiSewingMachine, GiBurningEye,  GiKnifeThrust, GiBackPain, GiThermometerHot, GiWaterBottle, GiBrain, GiStethoscope, GiHeartPlus, GiFactory, GiSoundWaves, GiMuscleUp, GiOilRig } from 'react-icons/gi';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-import production from '../../assets/Textile-sector-img/production.jpeg';
-import dying from '../../assets/Textile-sector-img/dying.jpeg';
-import administrative from '../../assets/Textile-sector-img/administrative.jpeg';
-
+import field from '../../assets/Petroleum-sector-img/field.jpeg';
+import refinery from '../../assets/Petroleum-sector-img/refinery.jpeg';
+import admin from '../../assets/Petroleum-sector-img/admin.jpeg';
 
 const data = [
   {
-  title: "Production Floor Workers",
-  image: production,
+  title: "Field & Rig Operators",
+  image: field, // replace with your field image import
+  icon: <GiOilRig className="text-2xl text-gray-700" />,
+  issues: [
+    {
+      title: "Musculoskeletal Injuries",
+      icon: <GiMuscleUp />,
+      description: "Caused by repetitive strain, heavy lifting, and awkward working postures on rigs.",
+    },
+    {
+      title: "Heat Stress & Fatigue",
+      icon: <GiThermometerHot />,
+      description: "Extended outdoor shifts in high-temperature zones cause exhaustion and dehydration.",
+    },
+    {
+      title: "Noise-Induced Hearing Loss",
+      icon: <GiSoundWaves />,
+      description: "Constant exposure to drilling equipment and generators impacts auditory health.",
+    },
+  ],
+},
+{
+  title: "Refinery & Plant Employees",
+  image: refinery, // replace with your refinery image import
   icon: <GiFactory className="text-2xl text-gray-700" />,
   issues: [
     {
-      title: "Respiratory Issues",
-      icon: <GiHeartBeats />,
-      description: "Caused by continuous exposure to textile dust, fibers, and poor ventilation.",
-    },
-    {
-      title: "Repetitive Strain Injuries",
-      icon: <GiDroplets />,
-      description: "Repeated manual stitching or machine operation leads to shoulder, back, and wrist pain.",
-    },
-    {
-      title: "Fatigue & Dehydration",
+      title: "Respiratory Disorders",
       icon: <GiLungs />,
-      description: "Long hours in high-temperature environments with limited hydration breaks.",
+      description: "Inhalation of hydrocarbon vapors and chemical fumes compromises lung function.",
+    },
+    {
+      title: "Skin Conditions",
+      icon: <GiChemicalDrop />,
+      description: "Direct or indirect exposure to solvents can cause irritation, burns, or dermatitis.",
+    },
+    {
+      title: "Cardiovascular Strain",
+      icon: <GiHeartPlus />,
+      description: "Stressful, high-stakes roles with minimal physical movement increase heart health risks.",
     },
   ],
 },
 {
-  title: "Dyeing & Chemical Unit Workers",
-  image: dying,
-  icon: <FaTools className="text-2xl text-gray-700" />,
-  issues: [
-    {
-      title: "Skin Allergies & Dermatitis",
-      icon: <GiStrong />,
-      description: "Frequent contact with chemicals, solvents, and dyes.",
-    },
-    {
-      title: "Respiratory Hazards",
-      icon: <GiHearingDisabled />,
-      description: "Inhalation of fumes from chemical baths or boilers.",
-    },
-    {
-      title: "Heat Stress",
-      icon: <GiHazardSign />,
-      description: "Due to working around furnaces and dyeing chambers.",
-    },
-  ],
-},
-{
-  title: "Supervisors & Administrative Staff",
-  image: administrative,
-  icon: <FaRegBuilding className="text-2xl text-gray-700" />,
+  title: "Corporate & Administrative Staff",
+  image: admin, // replace with your admin image import
+  icon: <FaUserTie className="text-2xl text-gray-700" />,
   issues: [
     {
       title: "Sedentary Lifestyle Diseases",
-      icon: <GiEyeball />,
-      description: "Diabetes, hypertension from prolonged desk jobs.",
+      icon: <GiStethoscope />,
+      description: "Long sitting hours contribute to diabetes, hypertension, and metabolic issues.",
     },
     {
-      title: "Mental Health Stress",
-      icon: <GiBrain />,
-      description: "Pressure to meet production targets and manage labor issues.",
+      title: "Mental Stress & Burnout",
+      icon: <GiBrain className="text-xl" />,
+      description: "Constant deadlines, decision pressure, and lack of movement lead to burnout.",
     },
     {
-      title: "Eye Strain & Headaches",
-      icon: <FaChair />,
-      description: "Prolonged screen usage and inadequate lighting.",
+      title: "Eye Strain",
+      icon: <GiBurningEye />,
+      description: "Prolonged exposure to screens without breaks causes dryness, fatigue, and vision stress.",
     },
   ],
 },
-
 
 ];
 
@@ -117,7 +115,7 @@ const AccordionItem = ({ title, icon, description, index, openIndex, setOpenInde
   );
 };
 
-const SteelHealthChallenges = () => {
+const PetroleumHealthChallenges = () => {
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
   }, []);
@@ -128,7 +126,7 @@ const SteelHealthChallenges = () => {
         className="text-2xl md:text-3xl font-bold text-center mb-10"
         data-aos="fade-up"
       >
-        Thread by Thread – Mapping Health Risks Across Roles
+       Every Role. Every Risk. We’re There for Your Team.
       </h2>
 
       <div className="grid md:grid-cols-3 gap-6 max-w-7xl mx-auto">
@@ -170,4 +168,4 @@ const SteelHealthChallenges = () => {
   );
 };
 
-export default SteelHealthChallenges;
+export default PetroleumHealthChallenges;
