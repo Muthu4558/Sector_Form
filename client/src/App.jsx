@@ -23,6 +23,7 @@ import AutomobileSector from './pages/AutomobileSector.jsx';
 import ShippingSector from './pages/ShippingSector.jsx';
 import MetalSector from './pages/MetalSector.jsx';
 import TourismSector from './pages/TourismSector.jsx';
+import PaperSector from './pages/PaperSector.jsx';
 
 const App = () => {
   return (
@@ -51,6 +52,7 @@ const App = () => {
           <Route path="/shipping" element={<ShippingSector/>} />
           <Route path="/metals" element={<MetalSector/>} />
           <Route path="/tourism" element={<TourismSector/>} />
+          <Route path="/paper" element={<PaperSector/>} />
           <Route path="/login" element={<Login />} />
 
           <Route

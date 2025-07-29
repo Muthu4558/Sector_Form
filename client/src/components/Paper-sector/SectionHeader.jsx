@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import heroImage from '../../assets/Tourism-sector-img/cover-img.jpeg';
+import heroImage from '../../assets/Paper-sector-img/cover-img.jpeg';
 import logo from '../../assets/Hotel-sector-img/logo_white.png';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -18,7 +18,7 @@ const HeroSection = () => {
         state: '',
         district: '',
         city: '',
-        sector: 'Tourism',
+        sector: 'Paper',
         usingWellness: '',
         employeeCount: '',
         expectedFeatures: '',
@@ -107,11 +107,11 @@ const HeroSection = () => {
             <div className="relative z-10 max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center mt-5">
                 <div className="text-white space-y-6 px-4">
                     <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-                        Wellness That Travels with You
+                        Wellness That Flows Like Paper
 
                     </h1>
                     <p className="text-lg max-w-md">
-                    Wellness that Powers Every Check-in, Tour & Takeoff
+                    Continuous Care for Continuous Production
                     </p>
                 </div>
 
