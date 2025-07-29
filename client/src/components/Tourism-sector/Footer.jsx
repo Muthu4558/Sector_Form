@@ -90,7 +90,7 @@ const ContactSection = () => {
 
       {/* Footer */}
       <div className="bg-[#1f2429] mt-20 py-5 text-white text-sm font-medium">
-        Nizcare | Empowering Metal Workforces | Wellness Forged for Strength & Safety
+        Nizcare | Empowering Tourism Workforces | Wellness That Travels With Your Team
       </div>
     </section>
   );
