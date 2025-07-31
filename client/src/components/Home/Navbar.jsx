@@ -28,6 +28,7 @@ const sectorList = [
   { name: 'Steel', path: '/steel' },
   { name: 'Aerospace', path: '/aerospace' },
   { name: 'Paper', path: '/paper' },
+  { name: 'Water & Sanitation', path: '/water&sanitation' },
   { name: 'Real Estate', path: '/real-estate' },
   { name: 'Sports', path: '/sports' },
   { name: 'Metals', path: '/metals' },
