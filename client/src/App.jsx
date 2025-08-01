@@ -25,6 +25,7 @@ import MetalSector from './pages/MetalSector.jsx';
 import TourismSector from './pages/TourismSector.jsx';
 import AerospaceSector from './pages/AerospaceSector.jsx';
 import WaterSanitationSector from './pages/Water&SanitationSector.jsx';
+import DairyLivestockSector from './pages/DairyLivestockSector.jsx';
 
 const App = () => {
   return (
@@ -55,6 +56,7 @@ const App = () => {
           <Route path="/tourism" element={<TourismSector/>} />
           <Route path="/aerospace" element={<AerospaceSector/>} />
           <Route path="/water&sanitation" element={<WaterSanitationSector/>} />
+          <Route path="/dairy&livestock" element={<DairyLivestockSector/>} />
           <Route path="/login" element={<Login />} />
 
           <Route
