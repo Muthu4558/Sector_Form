@@ -143,7 +143,7 @@ const HealthPackagesAccordion = () => {
         className="text-3xl font-bold text-center mb-10"
         data-aos="fade-up"
       >
-        Three-Tiered Health Check-up Packages Per Role Category
+        Precision Health Plans – "Tailored Wellness for Every Altitude"
       </h2>
 
       <div className="grid md:grid-cols-3 gap-6 max-w-7xl mx-auto">
