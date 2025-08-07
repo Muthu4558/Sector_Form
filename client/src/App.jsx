@@ -30,6 +30,7 @@ import DairySector from './pages/DairySector.jsx';
 import TelecomSector from './pages/TelecomSector.jsx';
 import CottageSector from './pages/CottageSector.jsx';
 import EduSector from './pages/EduSector.jsx';
+import SportsSector from './pages/SportsSector.jsx';
 
 
 const App = () => {
@@ -66,6 +67,7 @@ const App = () => {
           <Route path="/telecom" element={<TelecomSector/>} />
           <Route path="/cottage" element={<CottageSector/>} />
           <Route path="/edu" element={<EduSector />} />
+          <Route path="/sports" element={<SportsSector/>} />
           <Route path="/login" element={<Login />} />
 
           <Route
