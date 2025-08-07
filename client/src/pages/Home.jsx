@@ -211,7 +211,7 @@ const SectorLanding = () => {
           loop
           playsInline
           poster="/static/hero-placeholder.jpg" // (optional placeholder)
-          src="/your/video.mp4" // <-- UPDATE to your actual video file location
+          src='../static/hero' // <-- UPDATE to your actual video file location
         />
         {/* Shadow fade at bottom */}
         <div
