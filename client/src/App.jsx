@@ -29,6 +29,7 @@ import WaterTreatmentSector from './pages/WaterTreatmentSector.jsx';
 import DairySector from './pages/DairySector.jsx';
 import TelecomSector from './pages/TelecomSector.jsx';
 import CottageSector from './pages/CottageSector.jsx';
+import EduSector from './pages/EduSector.jsx';
 
 
 const App = () => {
@@ -64,6 +65,7 @@ const App = () => {
           <Route path="/dairy" element={<DairySector/>} />
           <Route path="/telecom" element={<TelecomSector/>} />
           <Route path="/cottage" element={<CottageSector/>} />
+          <Route path="/edu" element={<EduSector />} />
           <Route path="/login" element={<Login />} />
 
           <Route

@@ -31,6 +31,7 @@ const sectorList = [
   { name: 'Real Estate', path: '/real-estate' },
   { name: 'Sports', path: '/sports' },
   { name: 'Metals', path: '/metals' },
+  { name: 'EdTech', path: '/edu' },
 ];
 
 const Navbar = ({ transparent }) => {
